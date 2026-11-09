@@ -1,0 +1,81 @@
+public class Operators {
+
+    public static void main(String[] args) {
+
+        // Arithmetic operators 
+        int a = 8;
+        int b = 6;
+
+        System.out.println("a + b = " + (a + b));
+        System.out.println("a - b = " + (a - b));
+        System.out.println("a * b = " + (a * b));
+        System.out.println("a / b = " + (a / b));
+        System.out.println("a % b = " + (a % b));
+
+    
+        double c = 6.4;
+        double d = 0.03;
+
+        System.out.println("c + d = " + (c + d));
+        System.out.println("c - d = " + (c - d));
+        System.out.println("c * d = " + (c * d));
+        System.out.println("c / d = " + (c / d));
+        System.out.println("c % d = " + (c % d));
+
+        int x = 2 * ((5 + 3) * 4 - 8);
+        int y = 2 * 5 + 3 * 4 - 8;
+
+        System.out.println("x = " + x);
+        System.out.println("y = " + y);
+
+        // Unary operators
+        int e = 10;
+        int f = -88;
+        boolean n1 = true;
+
+        System.out.println(-e);
+        System.out.println(-f);
+        System.out.println(+e);
+        System.out.println(-e + 92);
+        System.out.println(!n1);
+        System.out.println(!(!n1));
+        System.out.println(e++);
+        System.out.println(--f);
+
+        int k = 3;
+        int t = ++k * 5 / k-- + --k;
+
+        System.out.println("k is " + k);
+        System.out.println("t is " + t);
+
+        assignmentOperator();
+        relationalOperators();
+    }
+
+    // assignment operators 
+    public static void assignmentOperator() {
+        int x = (int) 1.0;
+        short y = (short) 1921222;
+
+        System.out.println(x);
+        System.out.println(y);
+        System.out.println(2147483647 + 1);
+
+        boolean a = false;
+        boolean b = (a = true);
+
+        System.out.println(a);
+        System.out.println(b);
+    }
+
+    //relational operators
+    public static void relationalOperators() {
+        int x = 10;
+        int y = 20;
+
+        System.out.println(x < y);
+        System.out.println(x <= y);
+        System.out.println(x >= y);
+        System.out.println(x > y);
+    }
+}
