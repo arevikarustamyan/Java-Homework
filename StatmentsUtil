@@ -1,0 +1,105 @@
+public class StatmentsUtil {
+    public static void main(String[] args) {
+        System.out.println(IsZuyg(2));
+        System.out.println(IsDrakan(-9));
+        System.out.println(IsIntervaliMej(18));
+        System.out.println(ErkrordYot(356));
+        System.out.println(Shrjanagcimej(5, 7));
+        tveriTpum();
+        ArTp(567);
+        tpGumar();
+        qarakusi(4);
+        GumarHing(20);
+        artadryal(98);
+        gumarHnganish(44444);
+
+    }
+    public static boolean IsZuyg(int x){
+        if(x % 2 == 0){
+            return true;
+        }
+        return false;
+    }
+    public static String IsDrakan(int x){
+        if(x < 0){
+            return "Negative";
+        }else if(x > 0){
+            return "Positive";
+        }
+        return "X is Zero";
+    }
+    public static String IsIntervaliMej(int x) {
+        if (x > 5 && x < 8) {
+            return "X -y  (5;8) intervalum e";
+        } else if (x < 20 && x > 15) {
+            return "X -y (15;20) intervalum e";
+        }
+        return "X -y intervalum che";
+    }  public static boolean ErkrordYot(int x) {
+        int digit = (x / 10) % 10;
+
+        if (digit == 7) {
+            return true;
+        }
+        return false;
+    }public static boolean Shrjanagcimej(double x, double y) {
+        return x * x + y * y <= 25;
+    }
+    public static void tveriTpum(){
+        for(int i = 1; i <= 200; i++){
+            System.out.println(i);
+        }
+    }
+    public static void ArTp(int x){
+        while(x >= 10){
+            x /= 10;
+        }
+        System.out.println(x);
+    }
+    public static void tpGumar(){
+        int x = 1;
+        int y = 0;
+        while(x < 5 && y < 10){
+            System.out.println(x+y);
+            break;
+            //anverj cikl e , qani vor ++ chenq anum
+        }
+    }
+    public static void qarakusi(int x){
+        for(int i = 0; i < x; i++){
+            for(int j = 0; j < x; j++){
+                System.out.print("* ");
+            }
+            System.out.println();
+        }
+    }
+    public static void GumarHing(int n){
+        int g = 0;
+        for(int i = 1; i <= n; i++){
+            if(i % 5 == 0){
+                g += i;
+            }
+        }
+        System.out.println(g);
+    }
+    public static void artadryal(int x) {
+        int art = 1;
+
+        for (int i = 10; i <= x && i <= 99; i++) {
+            if (i % 2 == 0) {
+                art *= i;
+            }
+        }
+
+        System.out.println(art);
+    }public static void gumarHnganish(int x) {
+        int gumar = 0;
+
+        while (x > 0) {
+            gumar += x % 10;
+            x /= 10;
+        }
+
+        System.out.println(gumar);
+    }
+}
