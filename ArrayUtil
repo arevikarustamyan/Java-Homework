@@ -1,0 +1,418 @@
+
+public class ArrayUtil {
+
+    public static void main(String[] args) {
+
+        // 1. Տպել դրական տարրերը
+        int[] n = {1, -5, 6, -4, 7, 0};
+        printPositive(n);
+
+        // 2. Տպել short զանգվածի տարրերը հակառակ հերթականությամբ
+        short[] s = {2, 5, 7};
+        reverseShort(s);
+
+        // 3. Գտնել long զանգվածի ամենամեծ տարրը
+        long[] l = {100, 500, 200, 900, 300};
+        printMax(l);
+
+        // 4. Գտնել float զանգվածի ամենափոքր տարրը
+        float[] f = {5.5f, 2.3f, 8.7f, 1.2f};
+        printMin(f);
+
+        // 5. Տեղափոխել մեկ զանգվածի տարրերը մյուսի մեջ
+        int[] m = copyArray(n);
+        printArray(m);
+
+        // 6. Գումարել երկու զանգվածների համապատասխան տարրերը
+        int[] array1 = {1, 5, 6, 4, 7};
+        int[] array2 = {7, 4, 2, 3, 5};
+
+        int[] array3 = sumArrays(array1, array2);
+        printArray(array3);
+
+        // 7. Հաշվել k թվի հանդիպումների քանակը
+        int[] array4 = {1, 5, 6, 4, 5};
+        System.out.println(countNumber(array4, 5));
+
+        // 8. Տպել բոլոր չկրկնվող եռյակները
+        int[] array5 = {1, 5, 6, 4};
+        printTriplets(array5);
+
+        // 9. Դասավորել նվազման կարգով
+        int[] array6 = {5, 2, 9, 1, 7};
+        sortDescending(array6);
+        printArray(array6);
+
+        // 10. Վերջում տեղադրել կենտ թվերը
+        int[] array7 = {1, 5, 6, 4, 9, 7, 1};
+        int[] result = evenBeforeOdd(array7);
+        printArray(result);
+
+        // 11. Հեռացնել բոլոր զրոները
+        double[] array8 = {1, 0, 6, 4, 9, 0, 0};
+        double[] result2 = removeZeros(array8);
+        printArray(result2);
+
+        // 12. Գտնել ամենաերկար աճող ենթահաջորդականությունը
+        int[] array9 = {1, 5, 6, 4, 9, 0, 4, 7, 7, 9, 1};
+        int[] result3 = longestIncreasing(array9);
+        printArray(result3);
+
+        // 13. Երկուական համակարգից տասական համակարգ
+        int[] binary = {1, 1, 0, 0, 1, 1};
+        System.out.println(binaryToDecimal(binary));
+
+        // 14. Տպել գլխավոր անկյունագծից վերև գտնվող տարրերը
+        int[][] matrix = {
+                {1, 2, 3},
+                {4, 5, 6},
+                {7, 8, 9}
+        };
+        printAboveDiagonal(matrix);
+
+        // 15. Շրջել մատրիցը գլխավոր անկյունագծի նկատմամբ
+        int[][] matrix2 = {
+                {1, 2, 3},
+                {4, 5, 6},
+                {7, 8, 9}
+        };
+        transposeMatrix(matrix2);
+        printMatrix(matrix2);
+
+        // 16. Ստուգել տողերի գումարների զույգ լինելը
+        int[][] matrix3 = {
+                {1, -1, 0, 0},
+                {2, -2, 1, -1},
+                {9, 7, 1, -17}
+        };
+        System.out.println(checkEvenRows(matrix3));
+    }
+
+    /**
+     * Տպում է int զանգվածի բոլոր դրական տարրերը։
+     */
+    public static void printPositive(int[] n) {
+
+        for (int i = 0; i < n.length; i++) {
+
+            if (n[i] > 0) {
+                System.out.println(n[i]);
+            }
+        }
+    }
+
+    /**
+     * Տպում է short զանգվածի տարրերը հակառակ հերթականությամբ։
+     */
+    public static void reverseShort(short[] s) {
+
+        for (int i = s.length - 1; i >= 0; i--) {
+            System.out.println(s[i]);
+        }
+    }
+
+    /**
+     * Գտնում և տպում է long զանգվածի ամենամեծ տարրը։
+     */
+    public static void printMax(long[] l) {
+
+        long max = l[0];
+
+        for (int i = 1; i < l.length; i++) {
+
+            if (l[i] > max) {
+                max = l[i];
+            }
+        }
+
+        System.out.println(max);
+    }
+
+    /**
+     * Գտնում և տպում է float զանգվածի ամենափոքր տարրը։
+     */
+    public static void printMin(float[] f) {
+
+        float min = f[0];
+
+        for (int i = 1; i < f.length; i++) {
+
+            if (f[i] < min) {
+                min = f[i];
+            }
+        }
+
+        System.out.println(min);
+    }
+
+    /**
+     * Պատճենում է մեկ int զանգվածի տարրերը մեկ այլ զանգվածի մեջ։
+     */
+    public static int[] copyArray(int[] n) {
+
+        int[] m = new int[n.length];
+
+        for (int i = 0; i < n.length; i++) {
+            m[i] = n[i];
+        }
+
+        return m;
+    }
+
+    /**
+     * Գումարում է երկու զանգվածների համապատասխան տարրերը։
+     */
+    public static int[] sumArrays(int[] array1, int[] array2) {
+
+        int[] array3 = new int[array1.length];
+
+        for (int i = 0; i < array1.length; i++) {
+            array3[i] = array1[i] + array2[i];
+        }
+
+        return array3;
+    }
+
+    /**
+     * Հաշվում է, թե քանի անգամ է k թիվը հանդիպում զանգվածում։
+     */
+    public static int countNumber(int[] array, int k) {
+
+        int count = 0;
+
+        for (int i = 0; i < array.length; i++) {
+
+            if (array[i] == k) {
+                count++;
+            }
+        }
+
+        return count;
+    }
+
+    /**
+     * Տպում է զանգվածի բոլոր հնարավոր եռյակները։
+     */
+    public static void printTriplets(int[] array) {
+
+        for (int i = 0; i < array.length - 2; i++) {
+
+            for (int j = i + 1; j < array.length - 1; j++) {
+
+                for (int k = j + 1; k < array.length; k++) {
+
+                    System.out.println(
+                            "{" + array[i] + ", " + array[j] + ", " + array[k] + "}"
+                    );
+                }
+            }
+        }
+    }
+
+    /**
+     * Դասավորում է զանգվածի տարրերը նվազման կարգով։
+     */
+    public static void sortDescending(int[] array) {
+
+        for (int i = 0; i < array.length - 1; i++) {
+
+            for (int j = i + 1; j < array.length; j++) {
+
+                if (array[i] < array[j]) {
+
+                    int temp = array[i];
+                    array[i] = array[j];
+                    array[j] = temp;
+                }
+            }
+        }
+    }
+
+    /**
+     * Տեղափոխում է զույգ թվերը սկզբում, իսկ կենտ թվերը՝ վերջում։
+     */
+    public static int[] evenBeforeOdd(int[] array) {
+
+        int[] result = new int[array.length];
+        int index = 0;
+
+        for (int i = 0; i < array.length; i++) {
+
+            if (array[i] % 2 == 0) {
+                result[index] = array[i];
+                index++;
+            }
+        }
+
+        for (int i = 0; i < array.length; i++) {
+
+            if (array[i] % 2 != 0) {
+                result[index] = array[i];
+                index++;
+            }
+        }
+
+        return result;
+    }
+
+    /**
+     * Հեռացնում է իրական թվերի զանգվածից բոլոր զրոները։
+     */
+    public static double[] removeZeros(double[] array) {
+
+        int count = 0;
+
+        for (int i = 0; i < array.length; i++) {
+
+            if (array[i] != 0) {
+                count++;
+            }
+        }
+
+        double[] result = new double[count];
+        int index = 0;
+
+        for (int i = 0; i < array.length; i++) {
+
+            if (array[i] != 0) {
+                result[index] = array[i];
+                index++;
+            }
+        }
+
+        return result;
+    }
+
+    /**
+     * Գտնում է զանգվածի ամենաերկար ոչ նվազող անընդմեջ ենթահաջորդականությունը։
+     */
+    public static int[] longestIncreasing(int[] array) {
+
+        int count = 1;
+        int maxCount = 1;
+        int start = 0;
+        int maxStart = 0;
+
+        for (int i = 1; i < array.length; i++) {
+
+            if (array[i] >= array[i - 1]) {
+                count++;
+            } else {
+                count = 1;
+                start = i;
+            }
+
+            if (count > maxCount) {
+                maxCount = count;
+                maxStart = start;
+            }
+        }
+
+        int[] result = new int[maxCount];
+
+        for (int i = 0; i < maxCount; i++) {
+            result[i] = array[maxStart + i];
+        }
+
+        return result;
+    }
+
+    /**
+     * Երկուական տեսքով ներկայացված զանգվածը դարձնում է տասական թիվ։
+     */
+    public static int binaryToDecimal(int[] array) {
+
+        int result = 0;
+
+        for (int i = 0; i < array.length; i++) {
+            result = result * 2 + array[i];
+        }
+
+        return result;
+    }
+
+    /**
+     * Տպում է մատրիցի գլխավոր անկյունագծից վերև գտնվող տարրերը։
+     */
+    public static void printAboveDiagonal(int[][] matrix) {
+
+        for (int i = 0; i < matrix.length; i++) {
+
+            for (int j = i + 1; j < matrix[i].length; j++) {
+                System.out.println(matrix[i][j]);
+            }
+        }
+    }
+
+    /**
+     * Շրջում է քառակուսային մատրիցը գլխավոր անկյունագծի նկատմամբ։
+     */
+    public static void transposeMatrix(int[][] matrix) {
+
+        for (int i = 0; i < matrix.length; i++) {
+
+            for (int j = i + 1; j < matrix.length; j++) {
+
+                int temp = matrix[i][j];
+                matrix[i][j] = matrix[j][i];
+                matrix[j][i] = temp;
+            }
+        }
+    }
+
+    /**
+     * Ստուգում է՝ արդյոք մատրիցի բոլոր տողերի տարրերի գումարները զույգ են։
+     */
+    public static String checkEvenRows(int[][] matrix) {
+
+        for (int i = 0; i < matrix.length; i++) {
+
+            int sum = 0;
+
+            for (int j = 0; j < matrix[i].length; j++) {
+                sum += matrix[i][j];
+            }
+
+            if (sum % 2 != 0) {
+                return "NO";
+            }
+        }
+
+        return "YES";
+    }
+
+    /**
+     * Տպում է int զանգվածի բոլոր տարրերը։
+     */
+    public static void printArray(int[] array) {
+
+        for (int i = 0; i < array.length; i++) {
+            System.out.println(array[i]);
+        }
+    }
+
+    /**
+     * Տպում է double զանգվածի բոլոր տարրերը։
+     */
+    public static void printArray(double[] array) {
+
+        for (int i = 0; i < array.length; i++) {
+            System.out.println(array[i]);
+        }
+    }
+
+    /**
+     * Տպում է մատրիցի բոլոր տարրերը։
+     */
+    public static void printMatrix(int[][] matrix) {
+
+        for (int i = 0; i < matrix.length; i++) {
+
+            for (int j = 0; j < matrix[i].length; j++) {
+                System.out.print(matrix[i][j] + " ");
+            }
+
+            System.out.println();
+        }
+    }
+}
