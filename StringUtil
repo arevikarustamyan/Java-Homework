@@ -1,0 +1,252 @@
+
+public class StringUtil {
+
+    public static void main(String[] args) {
+
+        String line = "We are living in an yellow submarine. We don't  have anything";
+
+        // 1. String concatenation
+        System.out.println(concatenate("hello", "world"));
+        System.out.println(concatenate(1, 2, "hello"));
+        System.out.println(concatenate("1", 2, "hello"));
+        System.out.println(concatenate("hello", 1, 2, "world"));
+
+        // 2. Print words
+        printWords("We are living in");
+
+        // 3. Reverse
+        System.out.println(reverse("sample"));
+
+        // 4. Count substring
+        System.out.println(countSubString(line, "in"));
+
+        // 5. Uppercase
+        System.out.println(toUpperCaseString("hello world"));
+        System.out.println(toUpperCaseBuilder("hello world"));
+
+        // 6. Fill string
+        System.out.println(fillString("Armenia"));
+
+        // 7. Remove a
+        System.out.println(removeA(line));
+        System.out.println(removeABuilder(new StringBuilder(line)));
+
+        // 8. Replace a
+        System.out.println(replaceA(line));
+
+        // 9. Find longest word
+        System.out.println(findLongestWord(line));
+
+        // 10. Find first index
+        System.out.println(findFirstIndex(line, "a"));
+
+        // 11. Print substring
+        printSubLine(line, 5);
+        printSubLine(new StringBuilder(line), 5);
+
+        // 12. Check String
+        System.out.println(isNotEmpty("hello"));
+
+        // 13. Find longest part
+        System.out.println(findLongestPart(
+                "We, are, living, in an, yellow, submarine, We don't,  have anything"
+        ));
+    }
+
+    /**
+     * Միացնում է երկու տողերը։
+     */
+    public static String concatenate(String str1, String str2) {
+        return str1 + str2;
+    }
+
+    /**
+     * Միացնում է երկու թիվ և մեկ տող։
+     */
+    public static String concatenate(int num1, int num2, String str) {
+        return num1 + "" + num2 + str;
+    }
+
+    /**
+     * Միացնում է տողը, թիվը և մեկ այլ տող։
+     */
+    public static String concatenate(String str, int num, String str2) {
+        return str + num + str2;
+    }
+
+    /**
+     * Միացնում է երկու տող և երկու թիվ։
+     */
+    public static String concatenate(String str1, int num1, int num2, String str2) {
+        return str1 + num1 + num2 + str2;
+    }
+
+    /**
+     * Տպում է յուրաքանչյուր բառը նոր տողից։
+     */
+    public static void printWords(String line) {
+        System.out.println(line.replace(" ", "\n"));
+    }
+
+    /**
+     * Շրջում է տրված տողը։
+     */
+    public static String reverse(String line) {
+        String result = "";
+
+        for (int i = line.length() - 1; i >= 0; i--) {
+            result += line.charAt(i);
+        }
+
+        return result;
+    }
+
+    /**
+     * Հաշվում է, թե քանի անգամ է token-ը հանդիպում տրված տողում։
+     */
+    public static int countSubString(String line, String token) {
+        int count = 0;
+        int index = 0;
+
+        if (token == null || token.isEmpty()) {
+            return 0;
+        }
+
+        while ((index = line.indexOf(token, index)) != -1) {
+            count++;
+            index += token.length();
+        }
+
+        return count;
+    }
+
+    /**
+     * Տողը դարձնում է մեծատառ՝ օգտագործելով String։
+     */
+    public static String toUpperCaseString(String line) {
+        return line.toUpperCase();
+    }
+
+    /**
+     * Տողը դարձնում է մեծատառ՝ օգտագործելով StringBuilder։
+     */
+    public static String toUpperCaseBuilder(String line) {
+        StringBuilder result = new StringBuilder(line);
+
+        for (int i = 0; i < result.length(); i++) {
+            result.setCharAt(i, Character.toUpperCase(result.charAt(i)));
+        }
+
+        return result.toString();
+    }
+
+    /**
+     * Տողը լրացնում է '*' սիմվոլներով մինչև 20 նիշ։
+     */
+    public static String fillString(String line) {
+        StringBuilder result = new StringBuilder(line);
+
+        while (result.length() < 20) {
+            result.append('*');
+        }
+
+        return result.toString();
+    }
+
+    /**
+     * Հեռացնում է բոլոր 'a' սիմվոլները՝ օգտագործելով String։
+     */
+    public static String removeA(String line) {
+        return line.replace("a", "");
+    }
+
+    /**
+     * Հեռացնում է բոլոր 'a' սիմվոլները՝ օգտագործելով StringBuilder։
+     */
+    public static StringBuilder removeABuilder(StringBuilder line) {
+        for (int i = 0; i < line.length(); i++) {
+
+            if (line.charAt(i) == 'a') {
+                line.deleteCharAt(i);
+                i--;
+            }
+        }
+
+        return line;
+    }
+
+    /**
+     * Բոլոր 'a' սիմվոլները փոխարինում է '*' սիմվոլով։
+     */
+    public static String replaceA(String line) {
+        return line.replace('a', '*');
+    }
+
+    /**
+     * Գտնում է տրված տողի ամենաերկար բառը։
+     */
+    public static String findLongestWord(String line) {
+        String[] words = line.split(" ");
+        String longest = "";
+
+        for (int i = 0; i < words.length; i++) {
+
+            if (words[i].length() > longest.length()) {
+                longest = words[i];
+            }
+        }
+
+        return longest;
+    }
+
+    /**
+     * Գտնում է տրված սիմվոլի առաջին հանդիպման ինդեքսը։
+     */
+    public static int findFirstIndex(String line, String c) {
+        return line.indexOf(c);
+    }
+
+    /**
+     * Տպում է տողի սկզբից մինչև n-րդ ինդեքսը ներառող ենթատողը։
+     */
+    public static void printSubLine(String line, int n) {
+        System.out.println(line.substring(0, n + 1));
+    }
+
+    /**
+     * Տպում է տողի սկզբից մինչև n-րդ ինդեքսը ներառող ենթատողը։
+     */
+    public static void printSubLine(StringBuilder line, int n) {
+        System.out.println(line.substring(0, n + 1));
+    }
+
+    /**
+     * Ստուգում է՝ արդյոք տողը null չէ և դատարկ չէ։
+     */
+    public static boolean isNotEmpty(String line) {
+        if (line != null && !line.isEmpty()) {
+            return true;
+        }
+
+        return false;
+    }
+
+    /**
+     * Տողը բաժանում է ստորակետերով և գտնում ամենաերկար մասը։
+     */
+    public static String findLongestPart(String line) {
+        String[] parts = line.split(",");
+        String longest = "";
+
+        for (int i = 0; i < parts.length; i++) {
+
+            String part = parts[i].trim();
+
+            if (part.length() > longest.length()) {
+                longest = part;
+            }
+        }
+
+        return longest;
+    }
+}
